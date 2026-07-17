@@ -6,6 +6,7 @@ type ThemeProviderProps = {
   children: React.ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
+  disableTransitionOnChange?: boolean;
 };
 
 type ThemeProviderState = {
@@ -24,6 +25,7 @@ export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
+  disableTransitionOnChange = false,
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
@@ -32,16 +34,32 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+
+    let style: HTMLStyleElement | undefined;
+    if (disableTransitionOnChange) {
+      style = document.createElement("style");
+      style.textContent = "*,*::before,*::after{transition:none!important}";
+      document.head.appendChild(style);
+    }
+
     root.classList.remove("light", "dark");
     if (theme === "system") {
       const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
       root.classList.add(systemTheme);
-      return;
+    } else {
+      root.classList.add(theme);
     }
-    root.classList.add(theme);
-  }, [theme]);
+
+    if (style) {
+      // Force a reflow so the browser computes styles with transitions disabled,
+      // then defer removal to the next tick so the paint lands before transitions return.
+      void root.offsetHeight;
+      const el = style;
+      setTimeout(() => document.head.removeChild(el), 1);
+    }
+  }, [theme, disableTransitionOnChange]);
 
   const value = {
     theme,
