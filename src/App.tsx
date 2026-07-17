@@ -5,6 +5,8 @@ import { CropEditor } from "@/components/crop-editor";
 import { ExportControls } from "@/components/export-controls";
 import { ModeToggle } from "@/components/mode-toggle";
 import { UploadCard } from "@/components/upload-card";
+import { Button } from "@/components/ui/button";
+import { GitHub } from "@/components/ui/svgs/github";
 import { downloadBlob, exportSquircle, type ExportFormat } from "@/lib/crop-canvas";
 import { useObjectUrl } from "@/hooks/use-object-url";
 
@@ -95,7 +97,21 @@ export default function App() {
         className="pointer-events-none fixed inset-0"
         style={{ background: "var(--ambient-gradient)" }}
       />
-      <div className="fixed top-5 right-6 z-50">
+      <div className="fixed top-5 right-6 z-50 flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="icon"
+          render={
+            <a
+              href="https://github.com/thrxpt/squircrop"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View source on GitHub"
+            />
+          }
+        >
+          <GitHub className="h-[1.2rem] w-[1.2rem] fill-current" />
+        </Button>
         <ModeToggle />
       </div>
       <main className="relative mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-16 md:py-24">
