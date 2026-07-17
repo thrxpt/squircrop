@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://squircrop.vercel.app/sitemap.xml

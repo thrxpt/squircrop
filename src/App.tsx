@@ -112,7 +112,7 @@ export default function App() {
           </p>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
             Crop any image into a smooth Figma-style squircle. Tune the corner radius and smoothing,
-            then export as PNG, JPEG, or SVG.
+            then export as PNG, JPEG, or SVG. Free and open source.
           </p>
         </header>
 
