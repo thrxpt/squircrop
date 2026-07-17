@@ -101,8 +101,15 @@ export default function App() {
       <main className="relative mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-16 md:py-24">
         <header className="rise-in space-y-4" style={{ "--index": 0 } as CSSProperties}>
           <h1 className="font-heading text-5xl leading-[1.1] tracking-[-0.02em] md:text-6xl">
-            Squircle Crop
+            Squircrop
           </h1>
+          <p className="font-mono text-xs text-muted-foreground/50 tracking-wide">
+            /ˈskwɪr.krɒp/
+            <span className="mx-2 text-muted-foreground/25">·</span>
+            <span className="text-foreground/40">squircle</span>
+            <span className="mx-1.5 text-muted-foreground/25">+</span>
+            <span className="text-foreground/40">crop</span>
+          </p>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
             Crop any image into a smooth Figma-style squircle. Tune the corner radius and smoothing,
             then export as PNG, JPEG, or SVG.
